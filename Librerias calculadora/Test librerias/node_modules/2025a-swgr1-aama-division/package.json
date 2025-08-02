@@ -1,0 +1,11 @@
+{
+  "name": "2025a-swgr1-aama-division",
+  "version": "1.0.0",
+  "description": "operacion division",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alejandro Alfredo Minda Almeida",
+  "license": "ISC"
+}
