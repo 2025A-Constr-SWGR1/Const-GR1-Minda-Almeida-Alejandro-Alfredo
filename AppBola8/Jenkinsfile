@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Verificar AppBola8') {
+            steps {
+                dir('AppBola8') {
+                    echo 'Verificando archivos de la aplicación...'
+                    script {
+                        def requiredFiles = ['index.html', 'style.css', 'script.js']
+                        for (file in requiredFiles) {
+                            if (!fileExists(file)) {
+                                error "Falta el archivo requerido: ${file}"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        stage('Validar sintaxis') {
+            steps {
+                dir('AppBola8') {
+                    echo 'Validando sintaxis de HTML, CSS y JS...'
+                    sh 'echo Validación simulada (puedes integrar herramientas como htmlhint, stylelint, eslint)'
+                }
+            }
+        }
+
+        stage('Publicar artefactos') {
+            steps {
+                dir('AppBola8') {
+                    echo 'Publicando artefactos...'
+                    sh 'mkdir -p dist && cp *.html *.css *.js dist/'
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build de AppBola8 completado con éxito.'
+        }
+        failure {
+            echo 'Build de AppBola8 fallido.'
+        }
+    }
+}
