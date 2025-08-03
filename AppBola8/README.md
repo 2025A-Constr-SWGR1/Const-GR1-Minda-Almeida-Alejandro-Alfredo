@@ -28,12 +28,26 @@ Esta aplicación simula una bola 8 mágica que responde a preguntas del usuario 
 - Las funciones tienen uno o ningun argumeno para su funcionalidad.
 ---
 
-## 💡 Posibles Mejoras
+## ⚙️ Integración Continua con Jenkins
 
-Aunque se siguen varios principios de Clean Code, se podrían aplicar algunas mejoras adicionales:
-- **Evitar funciones anidadas**: separar funciones anónimas en funciones con nombre puede facilitar la reutilización y pruebas.
-- **Evitar el uso de `prompt` y `console.log`**. Se podria reconfigurar para usar algo diferente al `prompt` y se pueden quitar los `console.log`.
-- **Internacionalización**: separar los textos del código fuente para facilitar la traducción.
+Esta app forma parte de un repositorio que contiene múltiples aplicaciones. Para automatizar la validación y publicación de esta app, se ha implementado una **pipeline declarativa con Jenkins**.
+
+### ¿Qué hace la pipeline?
+
+El archivo `Jenkinsfile` dentro de `AppBola8/` realiza lo siguiente:
+
+1. Entra a la carpeta `AppBola8`.
+2. Verifica que existan los archivos esenciales (`index.html`, `style.css`, `script.js`).
+3. Simula una validación de sintaxis (puedes integrar `eslint`, `stylelint`, etc.).
+4. Publica los archivos en una carpeta `dist/`.
+
+### ¿Cómo usarla?
+
+1. En Jenkins, crea un **Pipeline Job**.
+2. En la sección de configuración:
+   - **SCM:** Git
+   - **Script Path:** `AppBola8/Jenkinsfile`
+3. Ejecuta el pipeline para verificar y construir automáticamente esta app.
 
 ---
 
